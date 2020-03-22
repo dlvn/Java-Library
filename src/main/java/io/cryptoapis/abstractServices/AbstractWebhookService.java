@@ -8,10 +8,9 @@ import io.cryptoapis.utils.config.EndpointConfig;
 import io.cryptoapis.utils.enums.HttpsRequestsEnum;
 import io.cryptoapis.utils.enums.WebhookEnum;
 import io.cryptoapis.utils.rest.WebServices;
-import javafx.util.Pair;
-import org.apache.commons.lang.StringUtils;
-
 import java.util.Map;
+import java.util.Map.Entry;
+import org.apache.commons.lang.StringUtils;
 
 public abstract class AbstractWebhookService extends AbstractServicesConfig {
 
@@ -62,7 +61,7 @@ public abstract class AbstractWebhookService extends AbstractServicesConfig {
     }
 
     private ApiResponse getWebhooks(Map<String, String> params) {
-        Pair<String, ApiError> pair = Utils.setQueryParams(params);
+        Entry<String, ApiError> pair = Utils.setQueryParams(params);
         if (pair.getValue() != null) {
             return Utils.setApiResponse(pair.getValue());
         }

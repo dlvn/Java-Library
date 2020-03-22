@@ -1,17 +1,22 @@
 package io.cryptoapis.blockchains.bitcoin_based.services;
 
-import io.cryptoapis.blockchains.bitcoin_based.models.Transaction.*;
+import io.cryptoapis.abstractServices.AbstractServicesConfig;
 import io.cryptoapis.blockchains.bitcoin_based.models.Hex;
+import io.cryptoapis.blockchains.bitcoin_based.models.Transaction.CompleteTransaction;
+import io.cryptoapis.blockchains.bitcoin_based.models.Transaction.CreateHDWalletTransaction;
+import io.cryptoapis.blockchains.bitcoin_based.models.Transaction.CreateTransaction;
+import io.cryptoapis.blockchains.bitcoin_based.models.Transaction.RefundTransaction;
+import io.cryptoapis.blockchains.bitcoin_based.models.Transaction.SignTransaction;
+import io.cryptoapis.blockchains.bitcoin_based.models.Transaction.TransactionSize;
 import io.cryptoapis.common_models.ApiError;
 import io.cryptoapis.common_models.ApiResponse;
 import io.cryptoapis.utils.Utils;
-import io.cryptoapis.utils.enums.HttpsRequestsEnum;
-import io.cryptoapis.abstractServices.AbstractServicesConfig;
 import io.cryptoapis.utils.config.EndpointConfig;
+import io.cryptoapis.utils.enums.HttpsRequestsEnum;
 import io.cryptoapis.utils.rest.WebServices;
-import javafx.util.Pair;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 public class TransactionService extends AbstractServicesConfig {
     private static final String PATH = "/{0}/bc/{1}/{2}/txs/{3}";
@@ -33,7 +38,7 @@ public class TransactionService extends AbstractServicesConfig {
     public ApiResponse getTxByBlock(String blockHash, Map<String, String> params) {
         String endpoint = String.format("block/%s", blockHash);
 
-        Pair<String, ApiError> pair = Utils.setQueryParams(params);
+        Entry<String, ApiError> pair = Utils.setQueryParams(params);
         if (pair.getValue() != null) {
             return Utils.setApiResponse(pair.getValue());
         }
@@ -43,7 +48,7 @@ public class TransactionService extends AbstractServicesConfig {
     public ApiResponse getTxByBlock(int blockNumber, Map<String, String> params) {
         String endpoint = String.format("block/%s", blockNumber);
 
-        Pair<String, ApiError> pair = Utils.setQueryParams(params);
+        Entry<String, ApiError> pair = Utils.setQueryParams(params);
         if (pair.getValue() != null) {
             return Utils.setApiResponse(pair.getValue());
         }
@@ -51,7 +56,7 @@ public class TransactionService extends AbstractServicesConfig {
     }
 
     public ApiResponse getUnconfirmedTxs(Map<String, String> params) {
-        Pair<String, ApiError> pair = Utils.setQueryParams(params);
+        Entry<String, ApiError> pair = Utils.setQueryParams(params);
         if (pair.getValue() != null) {
             return Utils.setApiResponse(pair.getValue());
         }

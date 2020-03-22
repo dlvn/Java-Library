@@ -8,10 +8,8 @@ import io.cryptoapis.utils.Utils;
 import io.cryptoapis.utils.config.EndpointConfig;
 import io.cryptoapis.utils.enums.HttpsRequestsEnum;
 import io.cryptoapis.utils.rest.WebServices;
-import javafx.util.Pair;
-import org.apache.commons.lang.StringUtils;
-
 import java.util.Map;
+import org.apache.commons.lang.StringUtils;
 
 public class AddressService extends AbstractServicesConfig {
     private static final String PATH = "/{0}/bc/{1}/{2}/{3}";
@@ -44,7 +42,7 @@ public class AddressService extends AbstractServicesConfig {
 
     public ApiResponse getTxsByAddress(String address, Map<String, String> params) {
         String endpoint = String.format("%s/%s/transactions", ADDRESS, address);
-        Pair<String, ApiError> pair = Utils.setQueryParams(params);
+        Map.Entry<String, ApiError> pair = Utils.setQueryParams(params);
         if (pair.getValue() != null) {
             return Utils.setApiResponse(pair.getValue());
         }
